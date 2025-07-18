@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "../entity/user.entity";
+import { User } from "../entities/user.entity";
 import { DATABASE_URL } from "./variables.config";
 
 export const database = new DataSource({

@@ -16,7 +16,7 @@
    "scripts": {
       "start-dev": "ts-node src/app.ts",
       "dev": "ts-node-dev --respawn --transpile-only --watch src src/app.ts",
-      "start": "ts-node src/index.ts",
+      "start": "node build/app.js",
       "build": "tsc",
       "typeorm": "typeorm-ts-node-commonjs"
    },
@@ -29,15 +29,19 @@
       "cors": "^2.8.5",
       "dotenv": "^17.2.0",
       "express": "^5.1.0",
+      "express-validator": "^7.2.1",
+      "helmet": "^8.1.0",
+      "http-status-codes": "^2.3.0",
       "jsonwebtoken": "^9.0.2",
       "morgan": "^1.10.1",
+      "pg": "^8.14.1",
+      "reflect-metadata": "^0.2.2",
       "ts-node": "^10.9.2",
       "typeorm": "0.3.25",
-      "typescript": "^5.8.3",
-      "reflect-metadata": "^0.2.2",
-      "pg": "^8.14.1"
+      "typescript": "^5.8.3"
    },
    "devDependencies": {
+      "@types/morgan": "^1.9.10",
       "@types/node": "^22.13.10",
       "ts-node": "^10.9.2",
       "typescript": "^5.8.2"
