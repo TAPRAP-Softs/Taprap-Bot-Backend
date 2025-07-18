@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["es2021"],
+    "target": "es2021",
+    "module": "nodenext", // Or NodeNext
+    "moduleResolution": "nodenext", // Or NodeNext
+    "outDir": "./build",
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "sourceMap": true
+  }
+}
