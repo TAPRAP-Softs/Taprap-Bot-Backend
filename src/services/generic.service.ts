@@ -13,7 +13,7 @@ export class GenericService<T> {
     return await this.repository.find();
   }
 
-  async findById(id: number): Promise<T | null> {
+  async findById(id: string): Promise<T | null> {
     return await this.repository.findOneBy({ id } as any);
   }
 
@@ -21,7 +21,7 @@ export class GenericService<T> {
     return await this.repository.findOne(options);
   }
 
-  async update(id: number, data: DeepPartial<T>): Promise<T | null> {
+  async update(id: string, data: DeepPartial<T>): Promise<T | null> {
     // Cast data to QueryDeepPartialEntity<T>
     await this.repository.update(id, data as QueryDeepPartialEntity<T>);
     return this.findById(id);
@@ -29,6 +29,6 @@ export class GenericService<T> {
 
   async delete(id: number): Promise<boolean> {
     const result = await this.repository.delete(id);
-    return result.affected > 0  ? true : false;
+    return result.affected > 0 ? true : false;
   }
 }

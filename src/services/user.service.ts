@@ -1,4 +1,4 @@
-import { userRepository } from "../app";
+import { userRepository } from "../config/db.config";
 import { User } from "../entities/user.entity";
 import { GenericService } from "./generic.service";
 

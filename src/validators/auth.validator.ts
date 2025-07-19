@@ -15,15 +15,8 @@ export const signupSchema = [
     .notEmpty()
     .withMessage("Business name is required"),
 
-  body("phone.countryCode")
-    .isString()
-    .withMessage("Country code must be a string")
-    .trim()
-    .notEmpty()
-    .withMessage("Country code is required"),
-
-  body("phone.number")
-    .isMobilePhone('any', { strictMode: true })
+  body("phone")
+    .isMobilePhone("any", { strictMode: true })
     .withMessage("Phone number must be a valid mobile phone number")
     .trim()
     .notEmpty()
@@ -35,15 +28,38 @@ export const signupSchema = [
     .trim()
     .notEmpty()
     .withMessage("Password is required"),
+
+  body("industry")
+    .isString()
+    .withMessage("Industry must be a string")
+    .trim()
+    .notEmpty()
+    .withMessage("Industry is required"),
 ];
 
 export const loginSchema = [
+  body().custom((body) => {
+    if (body.email && body.phone) {
+      throw new Error("Please provide either email or phone, not both");
+    }
+    if (!body.email && !body.phone) {
+      throw new Error("Please provide either email or phone");
+    }
+    return true;
+  }),
+
   body("email")
+    .if(body("email").exists())
     .isEmail()
     .withMessage("Email must be a valid email address")
-    .trim()
-    .notEmpty()
-    .withMessage("Email is required."),
+    .trim(),
+
+  body("phone")
+    .if(body("phone").exists())
+    .isMobilePhone("any", { strictMode: true })
+    .withMessage("Phone number must be a valid mobile phone number")
+    .trim(),
+
   body("password")
     .isString()
     .withMessage("Password must be a string")

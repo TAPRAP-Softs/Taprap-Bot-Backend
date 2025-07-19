@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("refresh_tokens")
-class RefreshToken {
+@Entity("Refresh_Tokens")
+export class RefreshToken {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -24,4 +24,4 @@ class RefreshToken {
   updatedAt: Date;
 }
 
-export default RefreshToken;
+

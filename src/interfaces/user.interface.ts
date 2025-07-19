@@ -7,6 +7,9 @@ export interface UserPublicData {
   industry: string;
   phone: string;
   profilePicture: string;
+  emailVerified?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface UserRequest extends Request {

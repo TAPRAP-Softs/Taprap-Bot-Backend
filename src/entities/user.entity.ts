@@ -12,7 +12,7 @@ import {
   TOKEN_EXPIRY_TIME,
 } from "../config/variables.config";
 
-@Entity()
+@Entity("Users")
 export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
@@ -23,8 +23,8 @@ export class User {
   @Column()
   businessName: string;
 
-  @Column()
-  profilePicture: string;
+  @Column({ nullable: true })
+  profilePicture: string | null;
 
   @Column()
   email: string;
@@ -35,10 +35,13 @@ export class User {
   @Column()
   password: string;
 
-  @CreateDateColumn()
+  @Column({ default: false })
+  emailVerified: boolean;
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   updatedAt: Date;
 
   generateAccessToken(): string {
@@ -49,7 +52,8 @@ export class User {
     }
 
     const payload = this.getPublicData();
-    const options: jwt.SignOptions = { expiresIn: Number(TOKEN_EXPIRY_TIME) };
+    //@ts-ignore
+    const options: jwt.SignOptions = { expiresIn: TOKEN_EXPIRY_TIME };
 
     return jwt.sign(payload, ACCESS_TOKEN_SECRET as jwt.Secret, options);
   }
@@ -62,6 +66,9 @@ export class User {
       industry: this.industry,
       phone: this.phone,
       profilePicture: this.profilePicture,
+      emailVerified: this.emailVerified,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
     };
   }
 }

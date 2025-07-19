@@ -16,7 +16,7 @@ import authController from "../controllers/auth.controller";
 export const authRouter = express.Router();
 
 authRouter.post("/signup", signupSchema, validator, authController.signup);
-// authRouter.post("/login", loginSchema, validator, authController.login);
+authRouter.post("/login", loginSchema, validator, authController.login);
 // authRouter.post(
 //   "/resend-otp",
 //   authentication,
